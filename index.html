@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Eventos</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<div class="form-header">
+							<h1>¿Sobre qué tipo de Evento le gustaría recibir más Información?</h1>
+						</div>
+						<form>
+							<div class="form-group">
+								<input class="form-control" type="text" id="nombre">
+								<span class="form-label">Apellido y Nombre</span>
+							</div>
+							<div class="form-group">
+								<select class="form-control" id="sexopersona">
+
+									<option value= "1"></option>
+									<option value= "2">masculino</option>
+									<option value= "3">femenino</option>
+
+								</select>
+								<span class="select-arrow"></span>
+								<span class="form-label">sexo</span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" id="correo">
+								<span class="form-label">Correo Electrónico</span>
+							</div>							
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<select class="form-control" id="eventostip">
+											
+											<option value="1">Teatro</option>
+											<option value="2"> Cine</option>
+											<option value="3">Concierto</option>
+
+										</select>
+										<span class="select-arrow"></span>
+										<span class="form-label">Tipo de Evento</span>
+									</div>
+								</div>
+							</div>
+							<div class="alert alert-primary" role="alert" name="alertevento" hidden></div>
+							<div class="form-btn">
+								<button id="inscripcion" type="button" class="button"  >Inscribirse</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="js/jquery.min.js"></script> 
+       <script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+	</script> 
+
+<script src="evento.js"></script>
+
+</body>
+
+</html>
