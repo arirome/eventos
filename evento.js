@@ -1,22 +1,22 @@
 
 
-//utilizo el evento addEventListener en vez de un onclick amor
-let Inscribirse= document.getElementById("inscripcion").addEventListener("click", eventospersonas)//viste este "click" bueno ahi produce el evento del boton
+//utilizo el sorteo addEventListener en vez de un onclick amor
+let Inscribirse= document.getElementById("inscripcion").addEventListener("click", guardarSorteos)//viste este "click" bueno ahi produce el evento del boton
 //eso si, hago un boton en el html y le conecto con el getElementById
 
 //hacemos un array para ir guardando las suscripciones
-suscripciones= []
-suscripciones.push(["ariela romero", "3", "arielarom18@hotmail.com", "1"])//esto lo hacemos como una prueba
+sorteos= []
+sorteos.push(["marcos javier", "3", "monte8@hotmail.com", "2"])//esto lo hacemos como una prueba
 
 
 //empezamos con la PRIMERA funcion para CONECTAR otras funciones y AGREGAR validaciones frukis trukis
-function eventospersonas(){
+function guardarSorteos(){
 //hacemos las variables que conectan con los diferentes campos
   let nombre= document.getElementById("nombre").value;
   let email= document.getElementById("correo").value;
-  let evento=document.getElementById("eventostip").value;
+  let sorteo=document.getElementById("sorteostip").value;
   let sexo= document.getElementById("sexopersona").value;
-  let divAlert=document.querySelector( '[name="alertevento"] '); 
+  let divAlert=document.querySelector( '[name="alertsorteo"] '); 
 
   //empezamos a VALIDAR los diferentes campos que tenemos  con el IF y la funcion que hicimos para validar(acordate de eso mi corazon)
   if(!validarNombre(nombre)){
@@ -29,8 +29,8 @@ function eventospersonas(){
     return;
  }
 
- if(!existeSuscriptorAEvento(email,evento)){
-  showAlert("error","usted ya esta registrado en este evento", divAlert);
+ if(!existeSuscriptorAsorteo(email,sorteo)){
+  showAlert("error","usted ya esta registrado en este sorteo", divAlert);
   return;
 } 
 //aca es diferente ¿por que? porque en el selec del html, a las opciones les puse un value, masculino era 2 y femenino 3
@@ -43,10 +43,10 @@ if(!validarSexo(sexo)){
 
 
 //si paso todas las validaciones entonces el usuario esta registrado, mostramo la alerta
-   showAlert("valido","evento registrado", divAlert);
+   showAlert("valido","sorteo registrado", divAlert);
 
 //vamos guardando los datos 
-guardarDatos(nombre,sexo,email, evento)
+guardarDatos(nombre,sexo,email, sorteo)
 
 //calculamos el porcentaje F o M
 calcularPorcentajesPorSexo() 
@@ -98,31 +98,36 @@ function validarSexo(sexo) {
   return false
 }
 
+//hacer funcion para ver si el usuario ingresa con el mismo email a un sorteo
+function existeSuscriptorAsorteo(email,sorteo){
 
-function existeSuscriptorAEvento(email,evento){
+  //ir recorriendo el array
+  for (let index=0; index<sorteos.length; index++){
+     let correoexis=sorteos[index][2];
+     let tiposorteo=sorteos[index][3];
 
-  
-  for (let index=0; index<suscripciones.length; index++){
-     let correoexis=suscripciones[index][2];
-     let tipoevento=suscripciones[index][3];
-     
-//
-     switch (tipoevento) {
+     switch (tiposorteo) {
       case 1:
-        evento= "teatro"
+        sorteo= "Automovil"
         break;
         case 2:
-        evento= "cine"
+        sorteo= "Smart TV"
         break;
         case 3:
-        evento= "concierto"
+        sorteo= "Iphone 13"
+        break;
+        case 4:
+        sorteo= "Casa"
+        break;
+        case 4:
+        sorteo= "1000000"
         break;
       default:
         break;
     }     
   
    
-     if(email===correoexis && evento===tipoevento ){
+     if(email===correoexis && sorteo===tiposorteo ){
          
           return false; 
   }
@@ -137,14 +142,14 @@ function guardarDatos() {
 
   let nombre= document.getElementById("nombre").value;
   let email= document.getElementById("correo").value;
-  let evento=document.getElementById("eventostip").value;
+  let sorteo=document.getElementById("sorteostip").value;
   let sexo= document.getElementById("sexopersona").value;
 
    let  guardarDatos=[];
    
 
   
-   existeSuscriptorAEvento(email,evento)
+   existeSuscriptorAsorteo(email,sorteo)
   
    validarNombre(nombre)
    
@@ -159,11 +164,11 @@ function guardarDatos() {
 
    guardarDatos.push(email)
   
-   guardarDatos.push(evento)
+   guardarDatos.push(sorteo)
 
    console.log(guardarDatos)
 
-   suscripciones.push(guardarDatos) 
+   sorteos.push(guardarDatos) 
    
 
 }
@@ -174,12 +179,12 @@ function guardarDatos() {
     let femenino=1
     let masculino=1
   
-    for (let i=0;  i<suscripciones.length; i++){
+    for (let i=0;  i<sorteos.length; i++){
         femenino=femenino+1
         masculino=masculino+1
-        if (suscripciones[i][1] == 2){
+        if (sorteos[i][1] == 2){
             femenino =++femenino
-        } else if (suscripciones[i][1] == 3){
+        } else if (sorteos[i][1] == 3){
             masculino=++masculino
         }
     }
